@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class RadioTest {
 
-    Radio radio = new Radio();
+    Radio radio = new Radio(55);
 
     @Test
     public void shouldSetNextRadioNumberBeforeMax() {
@@ -35,7 +35,7 @@ class RadioTest {
         int minRadioNumber = radio.getMinRadioNumber();
         radio.setRadioNumber(minRadioNumber);
         radio.setPrevRadioNumber();
-        assertEquals(9, radio.getRadioNumber());
+        assertEquals(55, radio.getRadioNumber());
     }
 
     @Test
@@ -54,15 +54,16 @@ class RadioTest {
     @Test
     public void shouldSetCurrentRadioNumberMoreMax() {
         int radioNumber = radio.getRadioNumber();
-        radio.setCurrentRadioNumber(11);
+        radio.setCurrentRadioNumber(56);
         assertEquals(radioNumber, radio.getRadioNumber());
     }
 
+
     @Test
     public void shouldIncreaseVolumeLessMax() {
-        radio.setVolume(3);
+        radio.setVolume(10);
         radio.increaseVolume();
-        assertEquals(4, radio.getVolume());
+        assertEquals(11, radio.getVolume());
     }
 
     @Test
