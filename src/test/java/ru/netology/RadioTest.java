@@ -6,85 +6,86 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class RadioTest {
 
-    Radio radio = new Radio();
+    Radio radio = new Radio(55);
 
     @Test
     public void shouldSetNextRadioNumberBeforeMax() {
-        radio.setRadioNumber(5);
+        radio.setCurrentRadioNumber(5);
         radio.setNextRadioNumber();
-        assertEquals(6, radio.getRadioNumber());
+        assertEquals(6, radio.getCurrentRadioNumber());
     }
 
     @Test
     public void shouldSetNextRadioNumberMoreMax() {
         int maxRadioNumber = radio.getMaxRadioNumber();
-        radio.setRadioNumber(maxRadioNumber);
+        radio.setCurrentRadioNumber(maxRadioNumber);
         radio.setNextRadioNumber();
-        assertEquals(0, radio.getRadioNumber());
+        assertEquals(0, radio.getCurrentRadioNumber());
     }
 
     @Test
     public void shouldSetPrevRadioNumberMoreMin() {
-        radio.setRadioNumber(5);
+        radio.setCurrentRadioNumber(5);
         radio.setPrevRadioNumber();
-        assertEquals(4, radio.getRadioNumber());
+        assertEquals(4, radio.getCurrentRadioNumber());
     }
 
     @Test
     public void shouldSetPrevRadioNumberLessMin() {
         int minRadioNumber = radio.getMinRadioNumber();
-        radio.setRadioNumber(minRadioNumber);
+        radio.setCurrentRadioNumber(minRadioNumber);
         radio.setPrevRadioNumber();
-        assertEquals(9, radio.getRadioNumber());
+        assertEquals(55, radio.getCurrentRadioNumber());
     }
 
     @Test
-    public void shouldSetCurrentRadioNumber() {
-        radio.setCurrentRadioNumber(7);
-        assertEquals(7, radio.getRadioNumber());
+    public void shouldSetRadioNumber() {
+        radio.setRadioNumber(7);
+        assertEquals(7, radio.getCurrentRadioNumber());
     }
 
     @Test
-    public void shouldSetCurrentRadioNumberLessMin() {
-        int radioNumber = radio.getRadioNumber();
-        radio.setCurrentRadioNumber(-1);
-        assertEquals(radioNumber, radio.getRadioNumber());
+    public void shouldSetRadioNumberLessMin() {
+        int radioNumber = radio.getCurrentRadioNumber();
+        radio.setRadioNumber(-1);
+        assertEquals(radioNumber, radio.getCurrentRadioNumber());
     }
 
     @Test
-    public void shouldSetCurrentRadioNumberMoreMax() {
-        int radioNumber = radio.getRadioNumber();
-        radio.setCurrentRadioNumber(11);
-        assertEquals(radioNumber, radio.getRadioNumber());
+    public void shouldSetRadioNumberMoreMax() {
+        int radioNumber = radio.getCurrentRadioNumber();
+        radio.setRadioNumber(56);
+        assertEquals(radioNumber, radio.getCurrentRadioNumber());
     }
+
 
     @Test
     public void shouldIncreaseVolumeLessMax() {
-        radio.setVolume(3);
+        radio.setCurrentVolume(10);
         radio.increaseVolume();
-        assertEquals(4, radio.getVolume());
+        assertEquals(11, radio.getCurrentVolume());
     }
 
     @Test
     public void shouldIncreaseVolumeMoreMax() {
         int maxVolume = radio.getMaxVolume();
-        radio.setVolume(maxVolume);
+        radio.setCurrentVolume(maxVolume);
         radio.increaseVolume();
-        assertEquals(maxVolume, radio.getVolume());
+        assertEquals(maxVolume, radio.getCurrentVolume());
     }
 
     @Test
     public void shouldDecreaseVolumeLessMin() {
         int minVolume = radio.getMinVolume();
-        radio.setVolume(minVolume);
+        radio.setCurrentVolume(minVolume);
         radio.decreaseVolume();
-        assertEquals(minVolume, radio.getVolume());
+        assertEquals(minVolume, radio.getCurrentVolume());
     }
 
     @Test
     public void shouldDecreaseVolumeMoreMin() {
-        radio.setVolume(8);
+        radio.setCurrentVolume(8);
         radio.decreaseVolume();
-        assertEquals(7, radio.getVolume());
+        assertEquals(7, radio.getCurrentVolume());
     }
 }
